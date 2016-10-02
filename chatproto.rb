@@ -33,7 +33,7 @@ __END__
 @@ layout
 <html>
   <head>
-    <title>Chat </title>
+    <title>Chat Screen </title>
     <meta charset="utf-8" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   </head>
