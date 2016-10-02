@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'json'
 
+#!/usr/bin/env ruby -I ../lib -I lib
+# coding: utf-8
 
 
 get '/' do
@@ -12,6 +14,7 @@ end
 
 connected = []
 post '/' do
+  204
   connected.each { |out|
    out << "data: #{params[:msg]}\n\n"
      }
