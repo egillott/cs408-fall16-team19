@@ -101,6 +101,27 @@ html, body {
   width: 200px;
 }
 
+.chat-window .recieved-message {
+  float: right;
+  width: 50%;
+  height: auto;
+  border-style: 1px solid black;
+  border-radius: 3px;
+  background-color: floralwhite;
+  padding-left: 10px;
+}
+
+.chat-window .sent-message {
+  left: 0px;
+  width:50%;
+  text-align: right;
+  height: auto;
+  border-style: 1px solid black;
+  border-radius: 3px;
+  background-color: dodgerblue;
+  padding-right: 10px;
+}
+
 #main {
     transition: margin-left .5s;
     /*padding: 16px;*/
