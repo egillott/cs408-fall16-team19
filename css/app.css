@@ -82,7 +82,6 @@ html, body {
 .chat-window {
   height:auto;
   overflow-y: auto;
-  background-color: grey;
 }
 
 .chat-footer {
@@ -102,23 +101,25 @@ html, body {
 }
 
 .chat-window .recieved-message {
-  float: right;
+  float:left;
   width: 50%;
   height: auto;
   border-style: 1px solid black;
   border-radius: 3px;
-  background-color: floralwhite;
+  background-color:darkgray;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .chat-window .sent-message {
-  left: 0px;
+  float:right;
   width:50%;
   text-align: right;
   height: auto;
   border-style: 1px solid black;
   border-radius: 3px;
   background-color: dodgerblue;
+  padding-left: 10px;
   padding-right: 10px;
 }
 
