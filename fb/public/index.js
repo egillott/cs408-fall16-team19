@@ -1,9 +1,11 @@
 var x;
-text = document.getElementById('demo');
+text = document.getElementById('coolspan');
+messageList = document.getElementById('messages');
 
 function Whispers() {
 	this.name = document.getElementById('namebox');
-	this.msg = document.getElementById('msgbox');
+	//message list
+	
 
 	this.initFirebase();
 	this.loadmessages();
@@ -21,10 +23,40 @@ Whispers.prototype.loadmessages = function(e) {
 	this.ref.on("value", function(snapshot) {
 		x = snapshot.val()
 		Object.keys(x).forEach(function(k) {
-			var string = "Text: " + x[k]['text'] + "\nName: " + x[k]['name'] + '\n';
-    		text.innerHTML += string;
+			var name = x[k]['name'];
+			var text = x[k]['text'];
+    		//console.log(string);
+    		displaymsg(k, name, text);
 		});
 	});
+};
+
+MESSAGE_TEMPLATE =
+    '<div class="message-container">' +
+      '<div class="spacing"><div class="pic"></div></div>' +
+      '<div class="message"></div>' +
+      '<div class="name"></div>' +
+    '</div>';
+
+
+displaymsg = function(key, name, text) {
+	var div = document.getElementById(key);
+	//if doesnt exist create it
+	if (!div) {
+ 	   var container = document.createElement('div');
+ 	   container.innerHTML = MESSAGE_TEMPLATE;
+ 	   div = container.firstChild;
+ 	   div.setAttribute('id', key);
+	   this.messageList.appendChild(div);
+	}
+    div.querySelector('.name').textContent = name;
+    var messageElement = div.querySelector('.message');
+    messageElement.textContent = text;
+    // Replace all line breaks by <br>.
+    messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
+    setTimeout(function() {div.classList.add('visible')}, 1);
+    messageList.scrollTop = messageList.scrollHeight;
+    //this.messageInput.focus();
 };
 
 function callsendmsg() {

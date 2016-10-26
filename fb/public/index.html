@@ -45,22 +45,21 @@
         </ul>
       </div>
     </div>
-    <div class="small-9 medium-9 large-9 columns chat-window">
-      <div class="recieved-message">
-        <span>This is just a test</span>
-      </div>
-      <br>
-      <div class="sent-message">
-        <span>This is another test</span>
-      </div>
+    <div class="small-9 medium-9 large-9 columns chat-window" id='messages'>
+
+      <span id="message-filler"></span>
+
       <div class="chat-footer">
         <input class="message-box" type="text" name="message" placeholder="Message">
         <a href="#" name="sendButton" class="button">Send</a>
       </div>
     </div>
-    
+
+
   </div>
 
+
+  <script type='text/javascript' src='index.js'></script>
   <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
   <script>
     // Initialize Firebase
