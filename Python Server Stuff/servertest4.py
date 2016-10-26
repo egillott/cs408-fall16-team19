@@ -4,7 +4,6 @@ from threading import Thread, Lock
 import thread
 import threading
 
-
 if len(sys.argv) < 2:
 	PORT = 5043
 else :
@@ -19,14 +18,10 @@ REQUEST_QUEUE_SIZE = 5
 def start_threads():
 	handler = threading.Thread(target=handle_requests)
 	server = threading.Thread(target=serve_forever)
-	try:
-		handler.start()
-		server.start()
-	except (KeyboardInterrupt, SystemExit):
-		handler.kill()
-		server.kill()
-  #	 	cleanup_stop_thread();
-    	sys.exit()
+	handler.daemon = True
+	server.daemon = True
+	handler.start()
+	server.start()
 
 def handle_requests():
 	print 'handler started'
@@ -41,8 +36,6 @@ def handle_requests():
 #			client_connection.sendall(http_response.format(HOST, PORT, message))
 #		if message == 'exit':
 #			break	
-
-
 
 
 def serve_forever():

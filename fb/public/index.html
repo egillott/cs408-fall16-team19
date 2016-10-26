@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>408 Chats</title>
+	<link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css">
+    <link rel="stylesheet" type="text/css" href="../../css/app.css">
+</head>
+
+
+<body>
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a onclick="openNav()">Whispers</a></h1>
+      </li>
+      <li class="toggle-topbar" onclick="openNav()"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+        <li></li>
+      </ul>
+    </section>
+    
+  </nav>
+    
+  <div id="mySidenav" class="sidenav">
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name sidenav-title-area">
+        </li>
+      </ul>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </nav>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+  </div>
+  
+  <div class="row full-width" id="main">
+    <div class="small-3 medium-3 large-3 columns chat-select">
+      <div>
+        <ul class="side-nav full-height">
+          <a href="#"><li class="room-select">Test 1</li></a>
+          <a href="#"><li class="room-select">Test 2</li></a>
+          <a href="#"><li class="room-select">Test 3</li></a>
+          <a href="#"><li class="room-select">Test 4</li></a>
+          <a href="#"><li class="room-select">Test 5</li></a>
+          <a href="#"><li class="room-select">Test 6</li></a>
+          <a href="#"><li class="room-select">Test 7</li></a>
+          <a href="#"><li class="room-select">Test 8</li></a>
+          <a href="#"><li class="room-select">Test 9</li></a>
+          <a href="#"><li class="room-select">Test 10</li></a>
+        </ul>
+      </div>
+    </div>
+    <div class="small-9 medium-9 large-9 columns chat-window">
+      <div>
+        <p>This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually This is where the chat stuff will go eventually </p>
+      </div>  
+      <div class="chat-footer full-width">
+        <input type="text" name="message" placeholder="Message">
+        <a href="#" name="sendButton" class="button small">Small Button</a>
+      </div>
+    </div>
+    
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyAl3I0B4eHsXD0oMM4BwMCLrKj_-H8SYXc",
+    authDomain: "whispers-969bf.firebaseapp.com",
+    databaseURL: "https://whispers-969bf.firebaseio.com",
+    storageBucket: "whispers-969bf.appspot.com",
+    messagingSenderId: "717272418728"
+  };
+  firebase.initializeApp(config);
+  </script>
+  
+  <script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
+  <script src="../../js/vendor/foundation.topbar.js"></script>
+  <script src="../../js/vendor/foundation.reveal.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <sctipt src="../../js/app.js"></sctipt>
+  <script src="../../js/script.js"></script>
+
+</body>
+</html>
+

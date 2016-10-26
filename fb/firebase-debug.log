@@ -1,0 +1,14 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Edward\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --project whispers
+[debug] CLI Version:  3.0.8
+[debug] Platform:     win32
+[debug] Node Version: v4.6.1
+[debug] Time:         Tue Oct 25 2016 14:35:20 GMT-0400 (US Eastern Daylight Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: C:\Users\Edward\cs408\cs408-fall16-team19\fb
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000
