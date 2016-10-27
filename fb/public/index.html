@@ -2,8 +2,8 @@
 <html>
 
 <head>
-	<title>408 Chats</title>
-	<link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css">
+  <title>408 Chats</title>
+  <link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css">
     <link rel="stylesheet" type="text/css" href="../../css/app.css">
 </head>
 
@@ -45,21 +45,25 @@
         </ul>
       </div>
     </div>
-    <div class="small-9 medium-9 large-9 columns chat-window" id='messages'>
-
-      <span id="message-filler"></span>
-
+    <div class="small-9 medium-9 large-9 columns chat-window">
+      <div class="message-container">
+        <div class="recieved-message">
+          <span class="message-sender">Tanner Strom</span>
+          <br>
+          <div class="text-container">
+            <span class="message-text">This is just a test but I must say that Ted Cruz is indeed the zodiac killer and that should not surprise any of you.</span>
+          </div>
+        </div>
+      </div>
+      
       <div class="chat-footer">
         <input class="message-box" type="text" name="message" placeholder="Message">
         <a href="#" name="sendButton" class="button">Send</a>
       </div>
     </div>
-
-
+    
   </div>
 
-
-  <script type='text/javascript' src='index.js'></script>
   <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -82,4 +86,3 @@
 
 </body>
 </html>
-

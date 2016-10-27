@@ -89,16 +89,23 @@ html, body {
 
 .chat-window {
   height:auto;
-  display: flex;
+  display: inline-block;
 }
 
 .chat-footer {
   display: flex;
   width:inherit;
-  flex: auto;
+  flex-direction: column;
+  flex:auto;
   height: 50px;
   position: fixed;
   bottom:0;
+}
+
+.message-container {
+  width: 100%;
+  display:block;
+  background-color: black;
 }
 
 .message-box {
@@ -111,24 +118,36 @@ html, body {
   margin-bottom: 15px;
 }
 
-.chat-window .recieved-message {
+.message-sender {
+  font-size: 0.7em;
+}
+
+.message-text {
+  font-size: 0.9em;
+}
+
+.text-container {
+  padding-left: 30px;
+}
+
+.recieved-message {
   float:left;
-  width: 45%;
+  width: 75%;
   height: auto;
   border-style: 1px solid black;
-  border-radius: 3px;
-  background-color:darkgray;
+  border-radius: 5px;
+  /*background-color:darkgray;*/
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.chat-window .sent-message {
+.sent-message {
   float:right;
   width:45%;
   text-align: right;
   height: auto;
   border-style: 1px solid black;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: dodgerblue;
   padding-left: 10px;
   padding-right: 10px;
