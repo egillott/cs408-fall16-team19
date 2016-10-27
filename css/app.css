@@ -67,20 +67,32 @@ html, body {
   max-height: initial;
 }
 
+.center {
+  align-content: center;
+}
+
 .room-select {
+  padding: 3px;
   background-color: white;
   height: 75px;
-  width: auto;
-  border-style: 1px solid black;
+  width: 100%;
   overflow-y: auto;
 }
 
+.room-select:hover {
+  background-color: azure;
+}
+
+.room-title {
+  width: inherit;
+  text-align: center;
+}
+
 .chat-select {
-  top: 44px;
+  top: 54px;
   bottom: 0;
   margin: auto;
   position:absolute;
-  border: 1px solid black;
   background-color: #efefef;
   display:flex;
   flex-direction: column;

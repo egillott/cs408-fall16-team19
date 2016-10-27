@@ -2,46 +2,54 @@
 <html>
 
 <head>
+<<<<<<< e20fc2de7fca5c3029771f577620da8ac27b45b6
   <title>408 Chats</title>
   <link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css">
+=======
+	<title>408 Chats</title>
+        <link rel="stylesheet" type="text/css" href="../../css/foundation.min.css">
+>>>>>>> redid the ui a little
     <link rel="stylesheet" type="text/css" href="../../css/app.css">
 </head>
 
 
 <body>
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a onclick="openNav()">Whispers</a></h1>
-      </li>
-      <li class="toggle-topbar" onclick="openNav()"><a href="#"><span>Menu</span></a></li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <li></li>
+  <div class="top-bar">
+    <div class="top-bar-title">
+      <ul class="menu">
+        <li class="menu-text">Whispers</li>
+        <li><a href="#">About</a></li>
       </ul>
-    </section>
-    
-  </nav>
-    
-  <div id="mySidenav" class="sidenav">
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name sidenav-title-area">
-        </li>
-      </ul>
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    </nav>
-    <a href="#">About</a>
-    <a href="#">Services</a>
+    </div>
+    <div>
+      <div class="top-bar-left"></div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><a href="#" data-toggle="example-dropdown2">Test</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown-pane" id="example-dropdown2" data-dropdown>
+    Just some junk that needs to be said. Or not. Your choice.
+  </div>
+
+  <div class="reveal" id="form-modal" data-reveal>
+    <form>
+      <p>Hello world</p>
+    </form>
   </div>
   
   <div class="row full-width" id="main">
     <div class="small-3 medium-3 large-3 columns chat-select">
       <div>
         <ul class="side-nav full-height">
-          <a href="#"><li class="room-select">Test 1</li></a>
-         
+          <a href="#">
+            <li class="room-select">
+              <div class="room-title">Tanner Strom</div>
+            </li>
+          </a>
         </ul>
       </div>
     </div>
@@ -66,6 +74,7 @@
     
   </div>
 
+<<<<<<< e20fc2de7fca5c3029771f577620da8ac27b45b6
   <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -83,8 +92,13 @@
   <script src="../../js/vendor/foundation.topbar.js"></script>
   <script src="../../js/vendor/foundation.reveal.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+=======
+>>>>>>> redid the ui a little
   <sctipt src="../../js/app.js"></sctipt>
   <script src="../../js/script.js"></script>
+  <script src="../../js/vendor/jquery.js"></script>
+  <script src="../../js/vendor/foundation.js"></script>
+  <script src="../../js/vendor/what-input.js"></script>
 
 </body>
 </html>
