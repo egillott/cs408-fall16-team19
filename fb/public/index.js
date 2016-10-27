@@ -38,9 +38,10 @@ Whispers.prototype.loadmessages = function(e) {
 MESSAGE_TEMPLATE =
     '<div class="message-container">' +
       '<div class="spacing"><div class="pic"></div></div>' +
-      '<span class="message"></span>' +
       '<span class="name"></span>' +
       '<br>' +
+      '<span class="message"></span>' +
+      '<br><br>' +
     '</div>';
 
 
