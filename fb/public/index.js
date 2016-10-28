@@ -1,43 +1,3 @@
-var x;
-messageList = document.getElementById('messages');
-function Whispers() {
-	this.name = document.getElementById('namebox');
-  this.messageList = document.getElementById('messages');
-	this.initFirebase();
-	this.loadmessages();
-}
-
-Whispers.prototype.checkOOP = function() {
-  console.log("called from object");
-}
-
-Whispers.prototype.initFirebase = function() {
- 	this.auth = firebase.auth();
-	this.database = firebase.database();
- 	this.storage = firebase.storage();
- 	this.ref = this.database.ref("messages");
-};
-
-document.getElementById('message-box').onkeydown = function(event) {
-    if (event.keyCode == 13) {
-    	var box = document.getElementById('message-box');
-    	console.log(box.value);
-      window.whispers.sendmsg("tester", box.value);
-      box.value = "";
-    }
-}
-
-Whispers.prototype.loadmessages = function(e) {
-	var setmessage = function(data) {
-		x = data.val();
-		console.log(x);
-		Object.keys(x).forEach(function(k) {
-			displaymsg(data.key, x.name, x.text);
-		});
-	};
-	this.ref.limitToLast(12).on('child_added', setmessage);
-};
-
 MESSAGE_TEMPLATE =
     '<div class="message-container">' +
       '<div class="spacing"><div class="pic"></div></div>' +
@@ -47,8 +7,37 @@ MESSAGE_TEMPLATE =
       '<br><br>' +
     '</div>';
 
+function Whispers() {
+  //to do: actual login sequence
+	this.name = "tester";
+  this.password = "pw";
 
-displaymsg = function(key, name, text) {
+  //this.groupList = document.getElementById()
+
+  this.messageList = document.getElementById('messages');
+	this.initFirebase();
+	this.loadmessages();
+}
+
+Whispers.prototype.initFirebase = function() {
+ 	this.auth = firebase.auth();
+	this.database = firebase.database();
+ 	this.storage = firebase.storage();
+ 	this.msgref = this.database.ref("messages");
+};
+
+Whispers.prototype.loadmessages = function(e) {
+	var setmessage = function(data) {
+		var x = data.val();
+		console.log(x);
+		Object.keys(x).forEach(function(k) {
+			window.whispers.displaymsg(data.key, x.name, x.text);
+		});
+	};
+	this.msgref.limitToLast(12).on('child_added', setmessage);
+};
+
+Whispers.prototype.displaymsg = function(key, name, text) {
 	var div = document.getElementById(key);
 	//if doesnt exist create it
 	if (!div) {
@@ -62,7 +51,7 @@ displaymsg = function(key, name, text) {
     var messageElement = div.querySelector('.message');
     messageElement.textContent = text;
     setTimeout(function() {div.classList.add('visible')}, 1);
-    window.whispers.messageList.scrollTop = messageList.scrollHeight;
+    window.whispers.messageList.scrollTop = window.whispers.messageList.scrollHeight;
 };
 
 Whispers.prototype.sendmsg = function(name, text) {
@@ -73,10 +62,14 @@ Whispers.prototype.sendmsg = function(name, text) {
     });
 };
 
+document.getElementById('message-box').onkeydown = function(event) {
+    if (event.keyCode == 13) {
+      var box = document.getElementById('message-box');
+      window.whispers.sendmsg(window.whispers.name, box.value);
+      box.value = "";
+    }
+}
+
 window.onload = function() {
   window.whispers = new Whispers();
 };
-
-function cleartext() {
-  document.getElementById('#message-box').text="";
-}
