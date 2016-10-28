@@ -3,6 +3,7 @@
 //clear out message listeners when changing groups
 //create group functionality
 //whisper functionality
+//add alert on (un)successful login / signup (replace log in button with signout / name)
 //...done?
 
 MESSAGE_TEMPLATE =
@@ -59,10 +60,14 @@ function login() {
         if (x[k].password === temppass) {
            window.whispers.name = tempuser
            window.whispers.password = temppass
+
+
            window.whispers.loadgroups();
            return;
         }
         else {
+          alert("Incorrect password");
+
         }
       }
     });
@@ -73,6 +78,7 @@ function logout() {
   this.name = '';
   this.password = '';
 }
+var iscorrectsign = 0;
 
 function signup() {
   console.log("try signup");
@@ -83,6 +89,7 @@ function signup() {
   var nodupe = 0;
   // confirm password
   if (temppass === confirmpass) {
+    iscorrectsign = 1;
     // iterate through names, check for duplicates. if so set nodupe to 1
     window.whispers.userref.on("value", function(snapshot) {
       var x = snapshot.val();
@@ -102,11 +109,17 @@ function signup() {
       })
       window.whispers.name = tempuser
       window.whispers.password = temppass
+       
       window.whispers.loadgroups();
     }
     else {
       console.log("duplicate");
     }
+  }
+  else{
+
+     alert("TWO PASSWORDS DO NOT MATCH!");
+     iscorrectsign = 0;
   }
 }
 
@@ -263,6 +276,8 @@ document.getElementById('message-box').onkeydown = function(event) {
 }
 
 window.onload = function() {
+   var modal_login = new Foundation.Reveal($('#login-modal'));
+  modal_login.open();
   window.whispers = new Whispers();
 };
 
@@ -291,6 +306,13 @@ $("#new-chat").on("click", function() {
 $("#signup-button").on("click", function() {
   $('#login-menu').hide();
   $('#logout-menu').show();
+  //window.location.reload(true);
+  if(iscorrectsign==1)
+  {
+    //console.log("Heuy");
+     var modal_signup = new Foundation.Reveal($('#signup-modal'));
+  modal_signup.close();
+  }
 })
 
 $("#more-people-btn").on("click", function() {
