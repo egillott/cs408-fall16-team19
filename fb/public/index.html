@@ -32,13 +32,13 @@
   <div class="reveal" id="login-modal" data-reveal>
     <p class="lead">Sign in</p>
     <div class="medium-6 row">
-      <label>Username:</label>
+      <label>Username</label>
       <input type="text" placeholder="Username" id="loginuser">
       <label>Password</label>
       <input type="password" placeholder="Password" id="loginpass">
-      <button class="small button full-width" type="button" onclick="login()">Sign in</button>
+      <a class="small button full-width" data-close aria-label="Close reveal" id="login-button" onclick="login()">Sign in</a>
       <br>
-      <a class="small button full-width" id="signup-modal-button" data-open="signup-modal" data-close>Sign up</a>
+      <a class="small button secondary full-width" id="signup-modal-button">Sign up</a>
     </div>
     <button class="close-button" data-close aria-label="Close reveal" type="button">
       <span aria-hidden="true">&times;</span>
@@ -48,7 +48,7 @@
   <div class="reveal" id="signup-modal" data-reveal>
     <p class="lead">Signup!</p>
     <div class="medium-6 row">
-      <label>Username:</label>
+      <label>Username</label>
       <input type="text" placeholder="Username" id="signuser">
       <label>Password</label>
       <input type="password" placeholder="Password" id="signpass">
@@ -66,18 +66,15 @@
       <div clat="chat-select">
         <ul class="side-nav full-height"></ul>
       </div>
-      
       <div class="chat-footer row">
         <a class="button full-width" id="new-chat" data-option="new-convo-modal">New Conversation</a>
       </div>
     </div>
 
     <div class="small-9 medium-9 large-9 column">
-
-      <div class="chat-window">
+      <div class="row chat-window">
         <div class="message-container" id="messages"></div>
       </div>
-
       <div class="row chat-footer">
         <div class="input-group">
           <input class="input-group-field" id='message-box' type="text" name="message" placeholder="Message">
@@ -94,9 +91,12 @@
     <div class="medium-6 row">
       <p class="lead">New Conversation</p>
       <label>What's this conversation called?</label>
-      <input type="text" placeholder="Conversation name...">
+      <input type="text" placeholder="Conversation name">
       <label>Who do you want to chat with?</label>
-      <input type="text" placeholder="Person...">
+      <div id="people-input">
+        <input type="text" placeholder="Person">
+      </div>
+      <a class="small button" id="more-people-btn">Add more people</a><br>
       <a class="small button">Submit</a>
       <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
