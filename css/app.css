@@ -105,34 +105,35 @@ html, body {
 }
 
 .chat-window {
-  height: auto;
+  bottom: 500px;
+  margin: auto;
   display: flex;
-  flex: auto;
   flex-direction: column;
   overflow-y: scroll;
-  display: inline-block;
+  background-color: aqua;
 }
 
 .chat-footer {
-  display: block;
+  display: inline-block;
   width:inherit;
   flex-direction:row;
   flex:auto;
-  height: 100px;
+  height: auto;
   margin-top: 5px;
   position: fixed;
   bottom:0;
-  background-color:black;
 }
 
 .message-container {
   width: 100%;
+  bottom:50px;
   display:block;
-  background-color: white;
+  background-color:antiquewhite;
 }
 
 .message-box {
   padding-right: 10px;
+  width:300px;
 }
 
 .chat-input {
