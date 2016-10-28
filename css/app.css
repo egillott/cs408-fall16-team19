@@ -104,13 +104,22 @@ html, body {
   overflow-y:scroll;
 }
 
-.chat-footer {
+.chat-select-footer {
   display: inline-block;
   width:inherit;
   padding-right: 30px;
-  position: fixed;
   bottom:0;
   background-color: black;
+}
+
+.chat-footer {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 10px;
+  display: inline-block;
+  width:inherit;
+  position: fixed;
+  bottom:0;
 }
 
 .chat-window {
@@ -172,6 +181,23 @@ html, body {
   background-color: dodgerblue;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.create-user {
+  height:auto;
+  width:auto;
+  background-color: white;
+}
+
+#footer{
+    height: 50px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    line-height: 50px;
+    color: #aaa;
+    text-align: center;
+    width: 100%;
 }
 
 #main {
