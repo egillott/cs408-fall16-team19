@@ -15,7 +15,6 @@ GROUP_TEMPLATE =
     '</li></a>';
 
 function Whispers() {
-  //to do: actual login sequence
   this.name = '';
   this.password = '';
 
@@ -28,10 +27,41 @@ function Whispers() {
 }
 
 function login() {
-  window.whispers.name = document.getElementById('loginuser').value;
-  window.whispers.password = document.getElementById('loginpass').value;
+  tempuser = document.getElementById('loginuser').value;
+  temppass = document.getElementById('loginpass').value;
+  window.whispers.userref.on("value", function(snapshot) {
+    var x = snapshot.val();
+    Object.keys(x).forEach(function(k) {
+      console.log(x[k].name, x[k].password);
+      if (x[k].name === tempuser) {
+        if (x[k].password === temppass) {
+           console.log("login succ");
+           window.whispers.name = tempuser
+           window.whispers.password = temppass
+           window.whispers.loadgroups();
+           return;
+        }
+        else {
+        }
+      }
+    });
+  })
   console.log(window.whispers.name, window.whispers.password);
-  window.whispers.loadgroups();
+}
+
+function signup() {
+  tempuser = document.getElementById('signuser').value;
+  temppass = document.getElementById('signpass').value;
+  confirmpass = document.getElementById('signconfirmpass').value;
+
+  if (temppass === confirmpass) {
+    console.log(tempuser, temppass);
+    //todo: check for duplicate names
+    window.whispers.userref.push( {
+      name: tempuser,
+      password: temppass,
+    })
+  }
 }
 
 Whispers.prototype.initFirebase = function() {
@@ -40,6 +70,7 @@ Whispers.prototype.initFirebase = function() {
   this.storage = firebase.storage();
   this.msgref = this.database.ref("messages");
   this.grpref = this.database.ref("groups");
+  this.userref = this.database.ref("users");
 };
 
 Whispers.prototype.loadgroups = function(e) {
