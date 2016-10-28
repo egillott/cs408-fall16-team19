@@ -8,9 +8,10 @@ MESSAGE_TEMPLATE =
     '</div>';
 
 GROUP_TEMPLATE = 
-    '<div class="room-separator"></div>' +
+    '<div class="room-separator">' +
     '<li class="room-select">' +
-    '<div class="room-title"></div>';
+    '<div class="room-title"></div>' +
+    '</li></div>';
 
 function Whispers() {
   //to do: actual login sequence
@@ -18,7 +19,6 @@ function Whispers() {
   this.password = "pw";
 
   this.groupList = document.getElementById('groups')
-
   this.messageList = document.getElementById('messages');
   this.initFirebase();
   this.loadmessages();
@@ -38,7 +38,7 @@ Whispers.prototype.loadgroups = function(e) {
     var x = data.val();
     console.log(x);
     Object.keys(x).forEach(function(k) {
-      window.whispers.displaygroup(data.key, x.name);
+      window.whispers.displaygroup(data.key, x.groupname);
     });
   };
   this.grpref.limitToLast(12).on('child_added', setgroup);
@@ -55,8 +55,7 @@ Whispers.prototype.displaygroup = function(key, name) {
      window.whispers.groupList.appendChild(div);
   }
     div.querySelector('.room-title').textContent = name;
-    //var messageElement = div.querySelector('.message');
-    //messageElement.textContent = text;
+    console.log(name);
     setTimeout(function() {div.classList.add('visible')}, 1);
     window.whispers.groupList.scrollTop = window.whispers.groupList.scrollHeight;
 };
