@@ -1,10 +1,8 @@
 var x;
 messageList = document.getElementById('messages');
-globaldatabase = firebase.database();
-
 function Whispers() {
 	this.name = document.getElementById('namebox');
-
+  this.messageList = document.getElementById('messages');
 	this.initFirebase();
 	this.loadmessages();
 }
@@ -58,13 +56,13 @@ displaymsg = function(key, name, text) {
  	   container.innerHTML = MESSAGE_TEMPLATE;
  	   div = container.firstChild;
  	   div.setAttribute('id', key);
-	   this.messageList.appendChild(div);
+	   window.whispers.messageList.appendChild(div);
 	}
     div.querySelector('.name').textContent = name;
     var messageElement = div.querySelector('.message');
     messageElement.textContent = text;
     setTimeout(function() {div.classList.add('visible')}, 1);
-    messageList.scrollTop = messageList.scrollHeight;
+    window.whispers.messageList.scrollTop = messageList.scrollHeight;
 };
 
 Whispers.prototype.sendmsg = function(name, text) {
