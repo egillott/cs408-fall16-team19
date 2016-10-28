@@ -62,6 +62,8 @@ function login() {
            return;
         }
         else {
+          alert("Incorrect password");
+
         }
       }
     });
@@ -257,6 +259,8 @@ document.getElementById('message-box').onkeydown = function(event) {
 }
 
 window.onload = function() {
+   var modal_login = new Foundation.Reveal($('#login-modal'));
+  modal_login.open();
   window.whispers = new Whispers();
 };
 
