@@ -1,5 +1,6 @@
 //random todo's:
 //logging out / changing users needs to clear the group list
+//recieve messages in correct groups
 //create group functionality
 //whisper functionality
 //...done?
@@ -39,6 +40,10 @@ function Whispers() {
 function checkNameExists(name) {
   //load all names from db
   //return true / false;
+
+}
+
+function newgroup() {
 
 }
 
