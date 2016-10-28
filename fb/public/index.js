@@ -1,3 +1,9 @@
+//random todo's:
+//logging out / changing users needs to clear the group list
+//create group functionality
+//whisper functionality
+//...done?
+
 MESSAGE_TEMPLATE =
     '<div class="message-container">' +
       '<div class="spacing"><div class="pic"></div></div>' +
@@ -74,7 +80,7 @@ function signup() {
         }
       });
     });
-    
+
     // if no duplicate name create user
     if (nodupe = 0) {
       console.log(nodupe, tempuser);
