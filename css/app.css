@@ -129,7 +129,6 @@ html, body {
   flex: auto;
   flex-direction: column;
   overflow-y: auto;
-  background-color: aqua;
 }
 
 .message-container {
@@ -178,7 +177,6 @@ html, body {
   height: auto;
   border-style: 1px solid black;
   border-radius: 5px;
-  background-color: dodgerblue;
   padding-left: 10px;
   padding-right: 10px;
 }
