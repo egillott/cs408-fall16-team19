@@ -36,6 +36,8 @@ function Whispers() {
   this.emptymsgList = this.messageList;
   this.initFirebase();
   this.a = 0;
+  this.loggedin = false;
+  $('#logout-menu').hide();
 }
 
 Whispers.prototype.initFirebase = function() {
@@ -67,8 +69,13 @@ function login() {
   })
 }
 
+function logout() {
+  this.name = '';
+  this.password = '';
+}
+
 function signup() {
-  console.log("try singup");
+  console.log("try signup");
   tempuser = document.getElementById('signuser').value;
   temppass = document.getElementById('signpass').value;
   confirmpass = document.getElementById('signconfirmpass').value;
@@ -266,7 +273,9 @@ $("#login-menu").on("click", function() {
 });
 
 $("#login-button").on("click", function() {
-  modal_login.close();
+  $('#login-menu').hide();
+  $('#logout-menu').show(); 
+  modal_login.close(); 
 })
 
 $("#signup-modal-button").on("click", function() {
@@ -280,7 +289,8 @@ $("#new-chat").on("click", function() {
 });
 
 $("#signup-button").on("click", function() {
-  //window.location.reload(true);
+  $('#login-menu').hide();
+  $('#logout-menu').show();
 })
 
 $("#more-people-btn").on("click", function() {
@@ -291,3 +301,14 @@ $("#open-about").on("click", function() {
   var about_modal = new Foundation.Reveal($("#about-modal"));
   about_modal.open();
 });
+
+$("#logout-menu").on("click", function() {
+  var sign_out_modal = new Foundation.Reveal($("#sign-out-modal"));
+  sign_out_modal.open();
+});
+
+$("#signoutbutton").on("click", function() {
+  $('#logout-menu').hide();
+  $('#login-menu').show();  
+  location.reload(true);
+})
