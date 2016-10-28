@@ -38,8 +38,8 @@
   </div>
   
   <div class="row full-width" id="main">
-    <div class="small-3 medium-3 large-3 columns chat-select">
-      <div>
+    <div class="small-3 medium-3 large-3 columns chat-select" id="groups">
+      <div clat="chat-select">
         <ul class="side-nav full-height">
           <a href="#">
             <div class="room-separator"></div>
@@ -86,20 +86,13 @@
         </ul>
       </div>
     </div>
-    <div class="small-9 medium-9 large-9 columns" id='messages'>
+
+    <div class="small-9 medium-9 large-9 column" id='messages'>
+
       <div class="chat-window">
-        <div class="message-container">
-          <div class="recieved-message">
-            <!--
-            <span class="message-sender">Tanner Strom</span>
-            <br>
-            <div class="text-container">
-              <span class="message-text">This is just a test but I must say that Ted Cruz is indeed the zodiac killer and that should not surprise any of you.</span>
-            </div>
-          -->
-          </div>
-        </div>
+        <div class="message-container"></div>
       </div>
+
       <div class="chat-footer">
         <div class="input-group">
           <input class="input-group-field" id='message-box' type="text" name="message" placeholder="Message">

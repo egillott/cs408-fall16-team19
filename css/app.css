@@ -104,28 +104,28 @@ html, body {
   overflow-y:scroll;
 }
 
-.chat-window {
-  bottom: 500px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  background-color: aqua;
-}
-
 .chat-footer {
   display: inline-block;
   width:inherit;
   padding-right: 30px;
   position: fixed;
   bottom:0;
+  background-color: black;
+}
+
+.chat-window {
+  bottom: 500px;
+  margin: auto;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: aqua;
 }
 
 .message-container {
   width: 100%;
-  bottom:50px;
   display:block;
-  background-color:antiquewhite;
 }
 
 .message-box {
