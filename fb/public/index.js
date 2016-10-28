@@ -58,6 +58,8 @@ function login() {
         if (x[k].password === temppass) {
            window.whispers.name = tempuser
            window.whispers.password = temppass
+
+
            window.whispers.loadgroups();
            return;
         }
@@ -70,6 +72,8 @@ function login() {
   })
 }
 
+var iscorrectsign = 0;
+
 function signup() {
   console.log("try singup");
   tempuser = document.getElementById('signuser').value;
@@ -79,6 +83,7 @@ function signup() {
   var nodupe = 0;
   // confirm password
   if (temppass === confirmpass) {
+    iscorrectsign = 1;
     // iterate through names, check for duplicates. if so set nodupe to 1
     window.whispers.userref.on("value", function(snapshot) {
       var x = snapshot.val();
@@ -98,11 +103,17 @@ function signup() {
       })
       window.whispers.name = tempuser
       window.whispers.password = temppass
+       
       window.whispers.loadgroups();
     }
     else {
       console.log("duplicate");
     }
+  }
+  else{
+
+     alert("TWO PASSWORDS DO NOT MATCH!");
+     iscorrectsign = 0;
   }
 }
 
@@ -286,6 +297,14 @@ $("#new-chat").on("click", function() {
 
 $("#signup-button").on("click", function() {
   //window.location.reload(true);
+  if(iscorrectsign==1)
+  {
+    //console.log("Heuy");
+     var modal_signup = new Foundation.Reveal($('#signup-modal'));
+  modal_signup.close();
+  }
+
+
 })
 
 $("#more-people-btn").on("click", function() {
