@@ -14,6 +14,8 @@ GROUP_TEMPLATE =
     '<div class="room-title"></div>' +
     '</li></a>';
 
+
+
 function Whispers() {
   this.name = '';
   this.password = '';
@@ -24,6 +26,12 @@ function Whispers() {
   this.currentGroupRef = '';
   this.emptymsgList = this.messageList;
   this.initFirebase();
+}
+
+function checkNameExists(name) {
+  //load all names from db
+  //return true / false;
+
 }
 
 function login() {
@@ -54,13 +62,30 @@ function signup() {
   temppass = document.getElementById('signpass').value;
   confirmpass = document.getElementById('signconfirmpass').value;
 
+  var nodupe = 0;
+  // confirm password
   if (temppass === confirmpass) {
-    console.log(tempuser, temppass);
-    //todo: check for duplicate names
-    window.whispers.userref.push( {
-      name: tempuser,
-      password: temppass,
-    })
+    // iterate through names, check for duplicates. if so set nodupe to 1
+    window.whispers.userref.on("value", function(snapshot) {
+      var x = snapshot.val();
+      Object.keys(x).forEach(function(k) {
+        if (tempuser === x[k].name) {
+          var nodupe = 1;
+        }
+      });
+    });
+    
+    // if no duplicate name create user
+    if (nodupe = 0) {
+      console.log(nodupe, tempuser);
+      window.whispers.userref.push( {
+        name: tempuser,
+        password: temppass,
+      })
+    }
+    else {
+      console.log("duplicate");
+    }
   }
 }
 
