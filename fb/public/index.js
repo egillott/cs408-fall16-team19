@@ -9,6 +9,10 @@ function Whispers() {
 	this.loadmessages();
 }
 
+Whispers.prototype.checkOOP = function() {
+  console.log("called from object");
+}
+
 Whispers.prototype.initFirebase = function() {
  	this.auth = firebase.auth();
 	this.database = firebase.database();
@@ -20,7 +24,8 @@ document.getElementById('message-box').onkeydown = function(event) {
     if (event.keyCode == 13) {
     	var box = document.getElementById('message-box');
     	console.log(box.value);
-    	callsendmsg("tester", box.value);
+      window.whispers.sendmsg("tester", box.value);
+      box.value = "";
     }
 }
 
@@ -61,13 +66,6 @@ displaymsg = function(key, name, text) {
     setTimeout(function() {div.classList.add('visible')}, 1);
     messageList.scrollTop = messageList.scrollHeight;
 };
-
-callsendmsg = function(name, text) {
-    globaldatabase.ref('messages/').push({
-    	name: name, 
-    	text: text,
-    });
-}
 
 Whispers.prototype.sendmsg = function(name, text) {
     // Add a new message entry to the Firebase Database.

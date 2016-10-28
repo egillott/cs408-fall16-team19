@@ -1,0 +1,49 @@
+{
+  "groups" : {
+    "-g0" : {
+      "groupname" : "Default Group",
+      "members" : {
+        "name": "tester"
+      },
+      "whisper" : "true",
+      "messages" : {
+        "-K2ib4H77rj0LYewF7dP" : {
+          "name" : "anonymous",
+          "text" : "Hello"
+        },
+        "-K2ib5JHRbbL0NrztUfO" : {
+          "name" : "anonymous",
+          "text" : "How are you"
+        },
+          "-K2ib62mjHh34CAUbide" : {
+          "name" : "anonymous",
+          "text" : "I am fine"
+        }
+      }
+    }
+  },
+  "users" : {
+    "-u0" : {
+      "name" : "tester",
+      "password" : "pw"
+    }
+  },
+  "messages" : {
+    "-K2ib4H77rj0LYewF7dP" : {
+      "name" : "anonymous",
+      "text" : "Hello"
+    },
+    "-K2ib5JHRbbL0NrztUfO" : {
+      "name" : "anonymous",
+      "text" : "How are you"
+    },
+    "-K2ib62mjHh34CAUbide" : {
+      "name" : "anonymous",
+      "text" : "I am fine"
+    },
+    "-KUyIy0MUKD9RdJjUMCl" : {
+      "name" : "tester",
+      "text" : "asdf"
+    }
+  }
+}
