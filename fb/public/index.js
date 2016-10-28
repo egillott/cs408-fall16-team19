@@ -78,3 +78,7 @@ Whispers.prototype.sendmsg = function(name, text) {
 window.onload = function() {
   window.whispers = new Whispers();
 };
+
+function cleartext() {
+  document.getElementById('#message-box').text="";
+}

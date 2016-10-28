@@ -88,6 +88,11 @@ html, body {
   text-align: center;
 }
 
+.room-separator {
+  height:10px;
+  width: auto;
+}
+
 .chat-select {
   top: 54px;
   bottom: 0;
@@ -100,18 +105,24 @@ html, body {
 }
 
 .chat-window {
-  height:auto;
+  height: auto;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  overflow-y: scroll;
   display: inline-block;
 }
 
 .chat-footer {
-  display: flex;
+  display: block;
   width:inherit;
-  flex-direction: column;
+  flex-direction:row;
   flex:auto;
-  height: 50px;
+  height: 100px;
+  margin-top: 5px;
   position: fixed;
   bottom:0;
+  background-color:black;
 }
 
 .message-container {
@@ -130,7 +141,7 @@ html, body {
   margin-bottom: 15px;
 }
 
-.message-sender {
+.name {
   font-size: 0.7em;
 }
 
@@ -138,7 +149,7 @@ html, body {
   font-size: 0.9em;
 }
 
-.text-container {
+.message {
   padding-left: 30px;
 }
 
