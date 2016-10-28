@@ -25,7 +25,7 @@ PEOPLE_TEMPLATE =
   '<input type="text" placeholder="person">' +
   '<a class="small button" id="more-people-btn">Add more people</a><br>';
 
-var groupcount = 0;
+var c = 0;
 
 function Whispers() {
   this.name = '';
@@ -37,7 +37,11 @@ function Whispers() {
   this.currentGroupRef = '';
   this.emptymsgList = this.messageList;
   this.initFirebase();
+  this.groupcount = 0;
+  this.count();
 }
+
+
 
 Whispers.prototype.initFirebase = function() {
   this.auth = firebase.auth();
@@ -48,26 +52,26 @@ Whispers.prototype.initFirebase = function() {
   this.userref = this.database.ref("users");
 };
 
+Whispers.prototype.count = function() {
+  this.grpref.on("value", function(snapshot) {
+    var x = snapshot.val();
+    Object.keys(x).forEach(function(k) {
+      console.log("do something");
+    })
+  })
+  console.log();
+};
+
 function creategroup() {
   tempname = document.getElementById('groupname').value;
   tempuser = document.getElementById('groupusers').value;
   var me = window.whispers.name;
 
-
-  window.whispers.grpref.on("value", function(snapshot) {
-    var x = snapshot.val();
-    groupcount=0;
-    Object.keys(x).forEach(function(k) {
-      console.log("one group");
-      groupcount+=1;
-    })
-  })
-  console.log(groupcount);
-
   window.whispers.grpref.child("g-123").set({
     groupname: tempname,
     members: {
-      tempuser, me
+      name: tempuser,
+      name: me,
     },
     messages: {
       firstmsg: {
@@ -88,10 +92,8 @@ function login() {
   window.whispers.userref.on("value", function(snapshot) {
     var x = snapshot.val();
     Object.keys(x).forEach(function(k) {
-      console.log(x[k].name, x[k].password);
       if (x[k].name === tempuser) {
         if (x[k].password === temppass) {
-           console.log("login succ");
            window.whispers.name = tempuser
            window.whispers.password = temppass
            window.whispers.loadgroups();
@@ -150,7 +152,7 @@ Whispers.prototype.loadgroups = function(e) {
       //if user is in group add it to list
       var n = x.members[k];
       if (n === window.whispers.name) {
-        console.log("display group" + x.groupname);
+        console.log("display group " + x.groupname);
         window.whispers.displaygroup(data.key, x.groupname);
       }
     });
@@ -177,10 +179,13 @@ function changeGroup(obj) {
   var parse = function(data) {
     var x = data.val();
     Object.keys(x).forEach(function(k) {
-      console.log("HELLO " + k);
-      if (k.startsWith("-g")) {
-        var s = "groups/" + k + "/messages";
+      // check if x is a group (has members field)
+      if (x[k].members) {
+
+        // if group name is what we're requesting, clear and display the messages
         if (x[k].groupname === obj.textContent) {
+          // create ref to that groups messages
+          var s = "groups/" + k + "/messages";
           console.log(window.whispers.messageList.innerHTML);
           window.whispers.messageList.innerHTML = ' ';
           window.whispers.messageList = window.whispers.foo;
