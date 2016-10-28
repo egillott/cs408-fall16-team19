@@ -225,6 +225,10 @@ $("#new-chat").on("click", function() {
   new_convo_mocal.open();
 });
 
+$("#signup-button").on("click", function() {
+  window.location.reload(true);
+})
+
 $("#more-people-btn").on("click", function() {
   console.log("ya.");
 })
