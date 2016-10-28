@@ -71,6 +71,7 @@ function login() {
 }
 
 function signup() {
+  console.log("try singup");
   tempuser = document.getElementById('signuser').value;
   temppass = document.getElementById('signpass').value;
   confirmpass = document.getElementById('signconfirmpass').value;
@@ -89,12 +90,16 @@ function signup() {
     });
 
     // if no duplicate name create user
-    if (nodupe = 0) {
+    if (nodupe === 0) {
       console.log(nodupe, tempuser);
       window.whispers.userref.push( {
         name: tempuser,
         password: temppass,
       })
+      console.log("login succ");
+      window.whispers.name = tempuser
+      window.whispers.password = temppass
+      window.whispers.loadgroups();
     }
     else {
       console.log("duplicate");
@@ -231,7 +236,7 @@ $("#new-chat").on("click", function() {
 });
 
 $("#signup-button").on("click", function() {
-  window.location.reload(true);
+  //window.location.reload(true);
 })
 
 $("#more-people-btn").on("click", function() {
