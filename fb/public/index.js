@@ -14,7 +14,13 @@ GROUP_TEMPLATE =
     '<div class="room-title"></div>' +
     '</li></a>';
 
+<<<<<<< 092b531243fbcc6aca405e8ee6d24e0d6260d5be
 
+=======
+PEOPLE_TEMPLATE =
+  '<input type="text" placeholder="person">' +
+  '<a class="small button" id="more-people-btn">Add more people</a><br>';
+>>>>>>> there's a lot of fixes in this one
 
 function Whispers() {
   this.name = '';
@@ -197,10 +203,15 @@ window.onload = function() {
   window.whispers = new Whispers();
 };
 
+
 $("#login-menu").on("click", function() {
   var modal_login = new Foundation.Reveal($('#login-modal'));
   modal_login.open();
 });
+
+$("#login-button").on("click", function() {
+  modal_login.close();
+})
 
 $("#signup-modal-button").on("click", function() {
   var modal_signup = new Foundation.Reveal($('#signup-modal'));
@@ -211,6 +222,10 @@ $("#new-chat").on("click", function() {
   var new_convo_mocal = new Foundation.Reveal($("#new-convo-modal"));
   new_convo_mocal.open();
 });
+
+$("#more-people-btn").on("click", function() {
+  console.log("ya.");
+})
 
 $("#open-about").on("click", function() {
   var about_modal = new Foundation.Reveal($("#about-modal"));
