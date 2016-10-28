@@ -14,13 +14,9 @@ GROUP_TEMPLATE =
     '<div class="room-title"></div>' +
     '</li></a>';
 
-<<<<<<< 092b531243fbcc6aca405e8ee6d24e0d6260d5be
-
-=======
 PEOPLE_TEMPLATE =
   '<input type="text" placeholder="person">' +
   '<a class="small button" id="more-people-btn">Add more people</a><br>';
->>>>>>> there's a lot of fixes in this one
 
 function Whispers() {
   this.name = '';
