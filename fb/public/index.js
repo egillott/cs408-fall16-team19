@@ -8,10 +8,13 @@ MESSAGE_TEMPLATE =
     '</div>';
 
 GROUP_TEMPLATE = 
-    '<div class="room-separator">' +
+    '<a href="#" onclick="changeGroup(this)">' + 
+    '<div class="room-separator"></div>' +
     '<li class="room-select">' +
     '<div class="room-title"></div>' +
-    '</li></div>';
+    '</li></a>';
+
+
 
 function Whispers() {
   //to do: actual login sequence
@@ -20,6 +23,8 @@ function Whispers() {
 
   this.groupList = document.getElementById('groups')
   this.messageList = document.getElementById('messages');
+  this.foo = this.messageList;
+  this.emptymsgList = this.messageList;
   this.initFirebase();
   this.loadmessages();
   this.loadgroups();
@@ -34,14 +39,17 @@ Whispers.prototype.initFirebase = function() {
 };
 
 Whispers.prototype.loadgroups = function(e) {
-  var setgroup = function(data) {
+  var parsegroup = function(data) {
     var x = data.val();
-    console.log(x);
-    Object.keys(x).forEach(function(k) {
-      window.whispers.displaygroup(data.key, x.groupname);
+    Object.keys(x.members).forEach(function(k) {
+      //if user is in group add it to list
+      var n = x.members[k];
+      if (n === window.whispers.name) {
+        window.whispers.displaygroup(data.key, x.groupname);
+      }
     });
   };
-  this.grpref.limitToLast(12).on('child_added', setgroup);
+  this.grpref.limitToLast(12).on('child_added', parsegroup);
 }
 
 Whispers.prototype.displaygroup = function(key, name) {
@@ -55,20 +63,47 @@ Whispers.prototype.displaygroup = function(key, name) {
      window.whispers.groupList.appendChild(div);
   }
     div.querySelector('.room-title').textContent = name;
-    console.log(name);
     setTimeout(function() {div.classList.add('visible')}, 1);
     window.whispers.groupList.scrollTop = window.whispers.groupList.scrollHeight;
 };
 
-Whispers.prototype.loadmessages = function(e) {
+function changeGroup(obj) {
+  var parse = function(data) {
+    var x = data.val();
+    Object.keys(x).forEach(function(k) {
+      if (k.startsWith("-g")) {
+        var s = "groups/" + k + "/messages";
+        if (x[k].groupname === obj.textContent) {
+          window.whispers.messageList.innerHTML = ' ';
+          window.whispers.messageList = window.whispers.foo;
+
+          window.whispers.loadmessages(s);
+        }
+      }
+    });
+  };
+  var s = obj.textContent;
+  //window.whispers.loadmessages(s);
+  //goal: get group message ref
+  window.whispers.database.ref('/').limitToLast(100).on('child_added', parse);
+}
+
+Whispers.prototype.loadmessages = function(ref) {
   var setmessage = function(data) {
     var x = data.val();
-    console.log(x);
     Object.keys(x).forEach(function(k) {
+      console.log("display", data.key, x.name, x.text);
       window.whispers.displaymsg(data.key, x.name, x.text);
     });
   };
-  this.msgref.limitToLast(12).on('child_added', setmessage);
+  if (ref) {
+    console.log(ref);
+    var r = this.database.ref(ref);
+    r.limitToLast(12).on('child_added', setmessage);
+  }
+  else {
+    this.msgref.limitToLast(12).on('child_added', setmessage);
+  }
 };
 
 Whispers.prototype.displaymsg = function(key, name, text) {
