@@ -16,16 +16,22 @@ GROUP_TEMPLATE =
 
 function Whispers() {
   //to do: actual login sequence
-  this.name = "tester";
-  this.password = "pw";
+  this.name = '';
+  this.password = '';
 
   this.groupList = document.getElementById('groups')
   this.messageList = document.getElementById('messages');
   this.foo = this.messageList;
+  this.currentGroupRef = '';
   this.emptymsgList = this.messageList;
   this.initFirebase();
-  this.loadmessages();
-  this.loadgroups();
+}
+
+function login() {
+  window.whispers.name = document.getElementById('loginuser').value;
+  window.whispers.password = document.getElementById('loginpass').value;
+  console.log(window.whispers.name, window.whispers.password);
+  window.whispers.loadgroups();
 }
 
 Whispers.prototype.initFirebase = function() {
@@ -75,14 +81,13 @@ function changeGroup(obj) {
           console.log(window.whispers.messageList.innerHTML);
           window.whispers.messageList.innerHTML = ' ';
           window.whispers.messageList = window.whispers.foo;
+
           window.whispers.loadmessages(s);
         }
       }
     });
   };
   var s = obj.textContent;
-  //window.whispers.loadmessages(s);
-  //goal: get group message ref
   window.whispers.database.ref('/').limitToLast(100).on('child_added', parse);
 }
 
@@ -94,11 +99,9 @@ Whispers.prototype.loadmessages = function(ref) {
       window.whispers.displaymsg(data.key, x.name, x.text);
     });
   };
-  if (ref) {
-    console.log(ref);
-    var r = this.database.ref(ref);
-    r.limitToLast(12).on('child_added', setmessage);
-  }
+  var r = this.database.ref(ref);
+  this.currentGroupRef = r;
+  r.limitToLast(12).on('child_added', setmessage);
 };
 
 Whispers.prototype.displaymsg = function(key, name, text) {
@@ -120,7 +123,7 @@ Whispers.prototype.displaymsg = function(key, name, text) {
 
 Whispers.prototype.sendmsg = function(name, text) {
     // Add a new message entry to the Firebase Database.
-    this.database.ref('messages/').push({
+    this.currentGroupRef.push({
       name: name, 
       text: text,
     });
