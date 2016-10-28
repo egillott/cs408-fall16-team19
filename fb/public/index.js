@@ -3,6 +3,7 @@
 //clear out message listeners when changing groups
 //create group functionality
 //whisper functionality
+//add alert on (un)successful login / signup (replace log in button with signout / name)
 //...done?
 
 MESSAGE_TEMPLATE =
