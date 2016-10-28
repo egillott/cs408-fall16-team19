@@ -138,24 +138,22 @@ window.onload = function() {
   window.whispers = new Whispers();
 };
 
-$('#new-chat').on("click", function() {
-  var popup = new Foundation.Reveal($('#new-conversation'));
-  popup.open();
-});
-
 $("#login-menu").on("click", function() {
-  var elem = new Foundation.Reveal($('#login-modal'));
-  elem.open();
+  var modal_login = new Foundation.Reveal($('#login-modal'));
+  modal_login.open();
 });
 
 $("#signup-modal-button").on("click", function() {
   var modal_signup = new Foundation.Reveal($('#signup-modal'));
-  var modal_login = new Foundation.Reveal($('#login-modal'));
-
   modal_signup.open();
-})
+});
 
 $("#new-chat").on("click", function() {
   var new_convo_mocal = new Foundation.Reveal($("#new-convo-modal"));
   new_convo_mocal.open();
-})
+});
+
+$("#open-about").on("click", function() {
+  var about_modal = new Foundation.Reveal($("#about-modal"));
+  about_modal.open();
+});
