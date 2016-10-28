@@ -3,7 +3,8 @@
 
 <head>
   <!--link rel="stylesheet" type="text/css" href="http://cdn.foundation5.zurb.com/foundation.css"-->
-	<title>408 Chats</title>
+        <title>Whispers</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../../css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/app.css">
 </head>
@@ -20,10 +21,8 @@
     <div>
       <div class="top-bar-left"></div>
       <div class="top-bar-right">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li>
-            <a href="#" id="login-menu">Login</a>
-          </li>
+        <ul class="menu" data-dropdown-menu>
+          <li><a href="#" id="login-menu">Login</a></li>
         </ul>
       </div>
     </div>
@@ -104,6 +103,14 @@
     </div>
   </div>
   
+  <div class="reveal" id="sign-out-modal">
+    <div class="medium-6 rows">
+      <p class="lead">Are you sure you wish to sign out?</p>
+      <button class="small button">Yes</button>
+      <button class="small button">Go Back!</button>
+    </div>
+  </div>
+
   <div class="reveal" id="about-modal" data-reveal>
     <p class="lead">What is Whispers?</p>
     <p>Whispers is a simple chat app you can use with your friends</p>
