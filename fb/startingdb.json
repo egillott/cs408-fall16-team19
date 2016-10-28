@@ -3,9 +3,8 @@
     "-g0" : {
       "groupname" : "Default Group",
       "members" : {
-        "name": "tester"
+        "name" : "tester"
       },
-      "whisper" : "true",
       "messages" : {
         "-K2ib4H77rj0LYewF7dP" : {
           "name" : "anonymous",
@@ -15,35 +14,82 @@
           "name" : "anonymous",
           "text" : "How are you"
         },
-          "-K2ib62mjHh34CAUbide" : {
+        "-K2ib62mjHh34CAUbide" : {
           "name" : "anonymous",
           "text" : "I am fine"
         }
-      }
+      },
+      "whisper" : "true"
+    },
+    "-g1" : {
+      "groupname" : "1am hicks squad",
+      "members" : {
+        "name" : "tester"
+      },
+      "messages" : {
+        "-K2ib4H77rj0LYewF7dP" : {
+          "name" : "tester",
+          "text" : "ayy"
+        }
+      },
+      "whisper" : "true"
+    },
+    "-g2" : {
+      "groupname" : "sekrit skwad",
+      "members" : {
+        "name" : "eddie"
+      },
+      "messages" : {
+        "-K2ib4H77rj0LYewF7dP" : {
+          "name" : "eddie",
+          "text" : "can you see this?"
+        }
+      },
+      "whisper" : "true"
+    }
+  },
+  "messages" : {
+    "-K2ib4H77rj0LYewF7dP" : {
+      "name" : "anonymous",
+      "text" : "msg1"
+    },
+    "-K2ib5JHRbbL0NrztUfO" : {
+      "name" : "anonymous",
+      "text" : "msg2"
+    },
+    "-K2ib62mjHh34CAUbide" : {
+      "name" : "anonymous",
+      "text" : "msg3"
+    },
+    "-KUyIy0MUKD9RdJjUMCl" : {
+      "name" : "tester",
+      "text" : "tanner sux"
+    },
+    "-KV7r40D1jGm3l_cvFU6" : {
+      "name" : "tester",
+      "text" : "heyyy"
+    },
+    "-KV8XWYtP7Z8296cB_gh" : {
+      "name" : "tester",
+      "text" : "woah"
+    },
+    "-KV8kWgNP10LYmkmKCGG" : {
+      "name" : "tester",
+      "text" : "can you see this"
+    },
+    "-KV8k_CeNCnJEhQH_BMi" : {
+      "name" : "tester",
+      "text" : "hi"
+    },
+    "-KV8kdmxrb3oCTU_4Vmv" : {
+      "name" : "tester",
+      "text" : "test"
     }
   },
   "users" : {
     "-u0" : {
       "name" : "tester",
       "password" : "pw"
-    }
-  },
-  "messages" : {
-    "-K2ib4H77rj0LYewF7dP" : {
-      "name" : "anonymous",
-      "text" : "Hello"
-    },
-    "-K2ib5JHRbbL0NrztUfO" : {
-      "name" : "anonymous",
-      "text" : "How are you"
-    },
-    "-K2ib62mjHh34CAUbide" : {
-      "name" : "anonymous",
-      "text" : "I am fine"
-    },
-    "-KUyIy0MUKD9RdJjUMCl" : {
-      "name" : "tester",
-      "text" : "asdf"
     }
   }
 }

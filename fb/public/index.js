@@ -14,8 +14,6 @@ GROUP_TEMPLATE =
     '<div class="room-title"></div>' +
     '</li></a>';
 
-
-
 function Whispers() {
   //to do: actual login sequence
   this.name = "tester";
@@ -74,9 +72,9 @@ function changeGroup(obj) {
       if (k.startsWith("-g")) {
         var s = "groups/" + k + "/messages";
         if (x[k].groupname === obj.textContent) {
+          console.log(window.whispers.messageList.innerHTML);
           window.whispers.messageList.innerHTML = ' ';
           window.whispers.messageList = window.whispers.foo;
-
           window.whispers.loadmessages(s);
         }
       }
@@ -100,9 +98,6 @@ Whispers.prototype.loadmessages = function(ref) {
     console.log(ref);
     var r = this.database.ref(ref);
     r.limitToLast(12).on('child_added', setmessage);
-  }
-  else {
-    this.msgref.limitToLast(12).on('child_added', setmessage);
   }
 };
 
