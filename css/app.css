@@ -116,10 +116,7 @@ html, body {
 .chat-footer {
   display: inline-block;
   width:inherit;
-  flex-direction:row;
-  flex:auto;
-  height: auto;
-  margin-top: 5px;
+  padding-right: 30px;
   position: fixed;
   bottom:0;
 }
