@@ -25,6 +25,8 @@ PEOPLE_TEMPLATE =
   '<input type="text" placeholder="person">' +
   '<a class="small button" id="more-people-btn">Add more people</a><br>';
 
+var groupcount = 0;
+
 function Whispers() {
   this.name = '';
   this.password = '';
@@ -37,13 +39,46 @@ function Whispers() {
   this.initFirebase();
 }
 
-function checkNameExists(name) {
-  //load all names from db
-  //return true / false;
+Whispers.prototype.initFirebase = function() {
+  this.auth = firebase.auth();
+  this.database = firebase.database();
+  this.storage = firebase.storage();
+  this.msgref = this.database.ref("messages");
+  this.grpref = this.database.ref("groups");
+  this.userref = this.database.ref("users");
+};
 
-}
+function creategroup() {
+  tempname = document.getElementById('groupname').value;
+  tempuser = document.getElementById('groupusers').value;
+  var me = window.whispers.name;
 
-function newgroup() {
+
+  window.whispers.grpref.on("value", function(snapshot) {
+    var x = snapshot.val();
+    groupcount=0;
+    Object.keys(x).forEach(function(k) {
+      console.log("one group");
+      groupcount+=1;
+    })
+  })
+  console.log(groupcount);
+
+  window.whispers.grpref.child("g-123").set({
+    groupname: tempname,
+    members: {
+      tempuser, me
+    },
+    messages: {
+      firstmsg: {
+        name: "System",
+        text: me + " has created the group"
+      }
+    },
+    whisper: "false",
+  })
+
+  window.whispers.loadgroups();
 
 }
 
@@ -96,7 +131,6 @@ function signup() {
         name: tempuser,
         password: temppass,
       })
-      console.log("login succ");
       window.whispers.name = tempuser
       window.whispers.password = temppass
       window.whispers.loadgroups();
@@ -107,14 +141,7 @@ function signup() {
   }
 }
 
-Whispers.prototype.initFirebase = function() {
-  this.auth = firebase.auth();
-  this.database = firebase.database();
-  this.storage = firebase.storage();
-  this.msgref = this.database.ref("messages");
-  this.grpref = this.database.ref("groups");
-  this.userref = this.database.ref("users");
-};
+
 
 Whispers.prototype.loadgroups = function(e) {
   var parsegroup = function(data) {
@@ -123,6 +150,7 @@ Whispers.prototype.loadgroups = function(e) {
       //if user is in group add it to list
       var n = x.members[k];
       if (n === window.whispers.name) {
+        console.log("display group" + x.groupname);
         window.whispers.displaygroup(data.key, x.groupname);
       }
     });
@@ -149,6 +177,7 @@ function changeGroup(obj) {
   var parse = function(data) {
     var x = data.val();
     Object.keys(x).forEach(function(k) {
+      console.log("HELLO " + k);
       if (k.startsWith("-g")) {
         var s = "groups/" + k + "/messages";
         if (x[k].groupname === obj.textContent) {
@@ -175,6 +204,7 @@ Whispers.prototype.loadmessages = function(ref) {
   };
   var r = this.database.ref(ref);
   this.currentGroupRef = r;
+  console.log("load messages from" + ref);
   r.limitToLast(12).on('child_added', setmessage);
 };
 
@@ -197,7 +227,7 @@ Whispers.prototype.displaymsg = function(key, name, text) {
 
 Whispers.prototype.sendmsg = function(name, text) {
     // Add a new message entry to the Firebase Database.
-    this.currentGroupRef.push({
+    window.whispers.currentGroupRef.push({
       name: name, 
       text: text,
     });

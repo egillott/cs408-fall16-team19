@@ -67,7 +67,7 @@
         <ul class="side-nav full-height"></ul>
       </div>
       <div class="chat-footer row">
-        <a class="button full-width" id="new-chat" data-option="new-convo-modal" onclick="newgroup()">New Conversation</a>
+        <a class="button full-width" id="new-chat" data-option="new-convo-modal">New Conversation</a>
       </div>
     </div>
 
@@ -91,13 +91,13 @@
     <div class="medium-6 row">
       <p class="lead">New Conversation</p>
       <label>What's this conversation called?</label>
-      <input type="text" placeholder="Conversation name">
+      <input type="text" placeholder="Conversation name" id="groupname">
       <label>Who do you want to chat with?</label>
       <div id="people-input">
-        <input type="text" placeholder="Person">
+        <input type="text" placeholder="Person" id="groupusers">
       </div>
       <a class="small button" id="more-people-btn">Add more people</a><br>
-      <a class="small button">Submit</a>
+      <a class="small button" onclick="creategroup()">Submit</a>
       <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
