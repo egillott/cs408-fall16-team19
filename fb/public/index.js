@@ -203,7 +203,6 @@ function changeGroup(obj) {
   var s = obj.textContent;
   window.whispers.database.ref('/').limitToLast(100).on('child_added', parse);
   
-
 }
 
 Whispers.prototype.loadgroups = function(e) {
