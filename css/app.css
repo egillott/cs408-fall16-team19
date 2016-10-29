@@ -210,6 +210,10 @@ html, body {
   display: none;
 }
 
+.memlist {
+  
+}
+
 #footer{
     height: 50px;
     position: fixed;

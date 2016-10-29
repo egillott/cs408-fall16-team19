@@ -204,6 +204,23 @@ function addMembers(name, key, mode) {
 
 }
 
+Whispers.prototype.displaymembers = function(ref) {
+  document.getElementById('mem-list').innerHTML = '';
+  var parsem = function(data) {
+    var x = data.val();
+    Object.keys(x).forEach(function(k) {
+      if (k == "name") {
+        console.log("member= ", x[k]);
+        document.getElementById('mem-list').innerHTML += x[k] + " ";
+      }
+      else console.log(k);
+    });
+  };
+  console.log(ref);
+  var r = this.database.ref(ref + "/members");
+  r.limitToLast(100).on('child_added', parsem);
+}
+
 function changeGroup(obj) {
   var parse = function(data) {
     var x = data.val();
@@ -220,6 +237,7 @@ function changeGroup(obj) {
           window.whispers.messageList.innerHTML = ' ';
           window.whispers.currentGroupKey = k;
           window.whispers.loadmessages(s, obj.textContent);
+          window.whispers.displaymembers(s );
         }
       }
     });
@@ -241,7 +259,7 @@ Whispers.prototype.loadgroups = function(e) {
       }
     });
   };
-  this.grpref.limitToLast(12).on('child_added', parsegroup);
+  this.grpref.limitToLast(50).on('child_added', parsegroup);
 }
 
 Whispers.prototype.displaygroup = function(key, name) {
