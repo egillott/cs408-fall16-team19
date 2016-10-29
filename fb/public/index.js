@@ -1,5 +1,4 @@
 //random todo's:
-//add members more easily..?
 //whisper functionality?
 //add alert on (un)successful login / signup (replace log in button with signout / name)
 //...done?
@@ -33,6 +32,7 @@ function Whispers() {
   this.foo = this.messageList;
   this.currentGroup;
   this.currentGroupRef = '';
+  this.currentGroupKey;
   this.emptymsgList = this.messageList;
   this.initFirebase();
   this.a = 0;
@@ -75,10 +75,6 @@ function login() {
   })
 }
 
-function setvar() {
-  window.whispers.nodupe = 1;
-}
-
 function signup() {
   console.log("try signup");
   tempuser = document.getElementById('signuser').value;
@@ -105,9 +101,6 @@ function signup() {
   }
 }
 
-function createUser(name, pass) {
-
-}
 
 function creategroup() {
   var tempname = document.getElementById('groupname').value;
@@ -139,9 +132,14 @@ function creategroup() {
   window.whispers.loadgroups();
 }
 
+function addmemberbtn() {
+  var x = document.getElementById("newmem").value;
+  addMembers(x, window.whispers.currentGroupKey);
+}
+
 function addMembers(name, key) {
   var r = "groups/" + key + "/members";
-  console.log(r);
+  console.log(name, r);
   var ref = window.whispers.database.ref(r);
   ref.push({
     name: name,
@@ -160,6 +158,7 @@ function changeGroup(obj) {
           var s = "groups/" + k + "/messages";
           window.whispers.currentGroup = obj.textContent;
           window.whispers.messageList.innerHTML = ' ';
+          window.whispers.currentGroupKey = k;
           window.whispers.loadmessages(s, obj.textContent);
         }
       }
