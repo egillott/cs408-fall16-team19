@@ -27,6 +27,9 @@ function Whispers() {
   this.name = '';
   this.password = '';
 
+  this.modal_login = new Foundation.Reveal($('#login-modal'));
+  this.modal_login.open();
+
   this.groupList = document.getElementById('groups')
   this.messageList = document.getElementById('messages');
   this.foo = this.messageList;
@@ -61,15 +64,16 @@ function login() {
         if (x[k].password === temppass) {
            window.whispers.name = tempuser
            window.whispers.password = temppass
-
-
+           $('#login-menu').hide();
+           $('#logout-menu').show(); 
+           //close
+           window.whispers.modal_login.close();
            window.whispers.loadgroups();
            return;
         }
         else {
-          alert("Incorrect password");
-
-
+          //alert("Incorrect password");
+          document.getElementById('wp').style.display = "inherit";
         }
       }
     });
@@ -153,8 +157,6 @@ function creategroup() {
 
     window.whispers.loadgroups();
   }
-
-
 }
 
 function addmemberbtn() {
@@ -309,8 +311,7 @@ document.getElementById('message-box').onkeydown = function(event) {
 }
 
 window.onload = function() {
-   var modal_login = new Foundation.Reveal($('#login-modal'));
-  modal_login.open();
+
   window.whispers = new Whispers();
 };
 
@@ -321,9 +322,7 @@ $("#login-menu").on("click", function() {
 });
 
 $("#login-button").on("click", function() {
-  $('#login-menu').hide();
-  $('#logout-menu').show(); 
-  modal_login.close(); 
+
 })
 
 $("#signup-modal-button").on("click", function() {
@@ -333,12 +332,18 @@ $("#signup-modal-button").on("click", function() {
 
 $("#new-chat").on("click", function() {
   var new_convo_mocal = new Foundation.Reveal($("#new-convo-modal"));
-  new_convo_mocal.open();
+  if (window.whispers.name) new_convo_mocal.open();
+  else {
+    alert("please log in");
+  }
 });
 
 $("#new-chat-mem").on("click", function() {
   var new_mem_modal = new Foundation.Reveal($("#new-mem-modal"));
-  new_mem_modal.open();
+  if (window.whispers.name) new_mem_modal.open();
+  else {
+    alert("please log in");
+  }
 })
 
 $("#signup-button").on("click", function() {
