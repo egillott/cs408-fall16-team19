@@ -28,6 +28,7 @@ function Whispers() {
 
   this.modal_login = new Foundation.Reveal($('#login-modal'));
   this.modal_login.open();
+  this.new_convo_mocal;
 
   this.groupList = document.getElementById('groups')
   this.messageList = document.getElementById('messages');
@@ -141,10 +142,7 @@ function creategroup() {
     var test = window.whispers.grpref.push({
       groupname: tempname,
       members: {
-        "default": {
-          name: "default",
-          message: "test"
-        }
+
       },
       whisper: mode,
     })
@@ -180,6 +178,7 @@ function creategroup() {
 
     window.whispers.loadgroups();
   }
+  window.whispers.new_convo_mocal.close();
 }
 
 function addmemberbtn() {
@@ -359,8 +358,8 @@ $("#signup-modal-button").on("click", function() {
 });
 
 $("#new-chat").on("click", function() {
-  var new_convo_mocal = new Foundation.Reveal($("#new-convo-modal"));
-  if (window.whispers.name) new_convo_mocal.open();
+  window.whispers.new_convo_mocal = new Foundation.Reveal($("#new-convo-modal"));
+  if (window.whispers.name) window.whispers.new_convo_mocal.open();
   else {
     alert("please log in");
   }
