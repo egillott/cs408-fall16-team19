@@ -16,6 +16,7 @@ GROUP_TEMPLATE =
     '<div class="room-separator"></div>' +
     '<li class="room-select">' +
     '<div class="room-title"></div>' +
+    '<div class="whisper-tf"></div>' +
     '</li></a>';
 
 PEOPLE_TEMPLATE =
@@ -255,14 +256,14 @@ Whispers.prototype.loadgroups = function(e) {
       var n = x.members[k].name;
       if (n === window.whispers.name) {
         // this is executed twice?
-        window.whispers.displaygroup(data.key, x.groupname);
+        window.whispers.displaygroup(data.key, x.groupname, x.whisper);
       }
     });
   };
   this.grpref.limitToLast(50).on('child_added', parsegroup);
 }
 
-Whispers.prototype.displaygroup = function(key, name) {
+Whispers.prototype.displaygroup = function(key, name, whisper) {
   var div = document.getElementById(key);
   //if doesnt exist create it
   if (!div) {
@@ -273,6 +274,7 @@ Whispers.prototype.displaygroup = function(key, name) {
      window.whispers.groupList.appendChild(div);
   }
     div.querySelector('.room-title').textContent = name;
+    div.querySelector('.whisper-tf').textContent = "Whisper mode: " + whisper;
     setTimeout(function() {div.classList.add('visible')}, 1);
     window.whispers.groupList.scrollTop = window.whispers.groupList.scrollHeight;
 };
