@@ -172,6 +172,7 @@ function changeGroup(obj) {
   
   $("#chat-name").empty();
   $("#chat-name").append(obj.textContent);
+  $("#messages").scrollTop($("#messages")[0].scrollHeight);
 }
 
 Whispers.prototype.loadgroups = function(e) {
