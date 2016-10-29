@@ -1,5 +1,4 @@
 //random todo's:
-//clear out message listeners when changing groups
 //add members more easily..?
 //check for duplicates everywhere
 //fix signup grey screen
@@ -40,6 +39,7 @@ function Whispers() {
   this.initFirebase();
   this.a = 0;
   this.loggedin = false;
+  this.nodupe;
   $('#logout-menu').hide();
 }
 
@@ -77,11 +77,9 @@ function login() {
   })
 }
 
-function logout() {
-  this.name = '';
-  this.password = '';
+function setvar() {
+  window.whispers.nodupe = 1;
 }
-var iscorrectsign = 0;
 
 function signup() {
   console.log("try signup");
@@ -89,41 +87,28 @@ function signup() {
   temppass = document.getElementById('signpass').value;
   confirmpass = document.getElementById('signconfirmpass').value;
 
-  var nodupe = 0;
+  window.whispers.nodupe = 1;
   // confirm password
   if (temppass === confirmpass) {
-    iscorrectsign = 1;
-    // iterate through names, check for duplicates. if so set nodupe to 1
-    window.whispers.userref.on("value", function(snapshot) {
-      var x = snapshot.val();
-      Object.keys(x).forEach(function(k) {
-        if (tempuser === x[k].name) {
-          var nodupe = 1;
-        }
-      });
-    });
-
     // if no duplicate name create user
-    if (nodupe === 0) {
-      console.log(nodupe, tempuser);
-      window.whispers.userref.push( {
-        name: tempuser,
-        password: temppass,
-      })
-      window.whispers.name = tempuser
-      window.whispers.password = temppass
+    console.log(window.whispers.nodupe, tempuser);
+    window.whispers.userref.child(tempuser).set({
+     name: tempuser,
+     password: temppass,
+    })
+    window.whispers.name = tempuser
+    window.whispers.password = temppass
        
-      window.whispers.loadgroups();
-    }
-    else {
-      console.log("duplicate");
-    }
+    window.whispers.loadgroups();
   }
   else{
-
      alert("TWO PASSWORDS DO NOT MATCH!");
      iscorrectsign = 0;
   }
+}
+
+function createUser(name, pass) {
+
 }
 
 function creategroup() {
@@ -299,12 +284,9 @@ $("#signup-button").on("click", function() {
   $('#login-menu').hide();
   $('#logout-menu').show();
   //window.location.reload(true);
-  if(iscorrectsign==1)
-  {
     //console.log("Heuy");
      var modal_signup = new Foundation.Reveal($('#signup-modal'));
   modal_signup.close();
-  }
 })
 
 $("#more-people-btn").on("click", function() {
