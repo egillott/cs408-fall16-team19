@@ -202,7 +202,7 @@ function addMembers(name, key, mode) {
       name: name,
     })
   }
-  window.whispers.displayMembers("groups/" + key);
+  window.whispers.displaymembers("groups/" + key);
 }
 
 Whispers.prototype.displaymembers = function(ref) {
@@ -329,7 +329,7 @@ Whispers.prototype.loadmessages = function(ref, name) {
   if (this.currentMode == true) {
     r = this.database.ref(ref + "/members");
   }
-  r.limitToLast(12).on('child_added', setmessage);
+  r.limitToLast(1000).on('child_added', setmessage);
 };
 
 Whispers.prototype.displaymsg = function(key, name, text) {
