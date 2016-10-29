@@ -129,7 +129,7 @@ function creategroup() {
   var tempuser = document.getElementById('groupusers').value;
   var me = window.whispers.name;
 
-  window.whispers.grpref.push({
+  var test = window.whispers.grpref.push({
     groupname: tempname,
     members: {
       "default": {
@@ -145,31 +145,16 @@ function creategroup() {
     whisper: "false",
   })
 
+  key = test.getKey();
   //add members
   console.log("add members");
-  addMembers(me, tempname);
-  addMembers(tempuser, tempname);
+  addMembers(me, key);
+  addMembers(tempuser, key);
 
   window.whispers.loadgroups();
 }
 
-function addMembers(name, group) {
-  //get reference to member list
-  //add members
-  window.whispers.grpref.on("value", function(snapshot) {
-    var x = snapshot.val();
-    Object.keys(x).forEach(function(k) {
-      console.log(x[k].groupname);
-      if (group === x[k].groupname) {
-        console.log("add " + x[k].groupname, name, group);
-        addMembersTwo(name, k)
-      }
-    });
-  });
-
-}
-
-function addMembersTwo(name, key) {
+function addMembers(name, key) {
   var r = "groups/" + key + "/members";
   console.log(r);
   var ref = window.whispers.database.ref(r);
@@ -203,8 +188,7 @@ Whispers.prototype.loadgroups = function(e) {
     var x = data.val();
     Object.keys(x.members).forEach(function(k) {
       //if user is in group add it to list
-      var n = x.members.name;
-      console.log(x.members);
+      var n = x.members[k].name;
       if (n === window.whispers.name) {
         // this is executed twice?
         window.whispers.displaygroup(data.key, x.groupname);
