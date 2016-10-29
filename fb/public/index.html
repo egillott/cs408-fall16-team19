@@ -81,7 +81,7 @@
           </div>
           <div class="top-bar-right">
             <ul class="menu" data-dropdown-menu>
-              <li><a href="#" class="lead" id="add-user-btn">+</a></li>
+              <li><a href="#" class="lead" id="new-chat-mem">+</a></li>
             </ul>
           </div>
         </nav>
@@ -116,6 +116,17 @@
     </div>
   </div>
   
+  <div class="reveal" id="new-mem-modal" data-reveal>
+    <div class="medium-6 row">
+      <p class="lead">Add a new member to your chat</p>
+      <input type="text" placeholder="New Member" id="newmem">
+      <button class="button small" id="add-mem-btn">Add</button>
+      <button class="close-button" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
   <div class="reveal" id="sign-out-modal">
     <div class="medium-6 rows">
       <p class="lead">Are you sure you wish to sign out?</p>
