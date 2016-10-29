@@ -1,7 +1,5 @@
 //random todo's:
 //add members more easily..?
-//check for duplicates everywhere
-//fix signup grey screen
 //whisper functionality?
 //add alert on (un)successful login / signup (replace log in button with signout / name)
 //...done?
