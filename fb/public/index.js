@@ -1,9 +1,8 @@
 //random todo's:
 //add members more easily..?
-//check for duplicates everywhere
-//fix signup grey screen
 //whisper functionality?
 //add alert on (un)successful login / signup (replace log in button with signout / name)
+//fix go back button
 //...done?
 
 MESSAGE_TEMPLATE =
@@ -69,8 +68,6 @@ function login() {
         }
         else {
           alert("Incorrect password");
-
-
         }
       }
     });
@@ -105,10 +102,6 @@ function signup() {
      alert("TWO PASSWORDS DO NOT MATCH!");
      iscorrectsign = 0;
   }
-}
-
-function createUser(name, pass) {
-
 }
 
 function creategroup() {
@@ -283,9 +276,9 @@ $("#new-chat").on("click", function() {
 $("#signup-button").on("click", function() {
   $('#login-menu').hide();
   $('#logout-menu').show();
-  //window.location.reload(true);
+  window.location.reload(true);
     //console.log("Heuy");
-     var modal_signup = new Foundation.Reveal($('#signup-modal'));
+  var modal_signup = new Foundation.Reveal($('#signup-modal'));
   modal_signup.close();
 })
 
@@ -307,4 +300,9 @@ $("#signoutbutton").on("click", function() {
   $('#logout-menu').hide();
   $('#login-menu').show();  
   location.reload(true);
+})
+
+$("#fakesignoutbutton").on("click", function() {
+    var sign_out_modal = new Foundation.Reveal($("#sign-out-modal"));
+    sign_out_modal.close(); 
 })
