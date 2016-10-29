@@ -62,6 +62,7 @@ function login() {
            return;
         }
         else {
+          alert("incorrect password");
         }
       }
     });
