@@ -16,7 +16,7 @@ GROUP_TEMPLATE =
     '<div class="room-separator"></div>' +
     '<li class="room-select">' +
     '<div class="room-title"></div>' +
-    '<div class="whisper-tf"></div>' +
+    //'<div class="whisper-tf"></div>' +
     '</li></a>';
 
 PEOPLE_TEMPLATE =
@@ -217,6 +217,7 @@ Whispers.prototype.displaymembers = function(ref) {
       else console.log(k);
     });
   };
+  document.getElementById('mem-list').innerHTML +="Whisper is " + this.currentMode + " | ";
   console.log(ref);
   var r = this.database.ref(ref + "/members");
   r.limitToLast(100).on('child_added', parsem);
@@ -237,6 +238,7 @@ function changeGroup(obj) {
           console.log("change mode to"+ x[k].whisper);
           window.whispers.messageList.innerHTML = ' ';
           window.whispers.currentGroupKey = k;
+
           window.whispers.loadmessages(s, obj.textContent);
           window.whispers.displaymembers(s );
         }
@@ -244,6 +246,9 @@ function changeGroup(obj) {
     });
   };
   var s = obj.textContent;
+  s = s.slice(0, s.indexOf("Whisper mode"))
+  console.log("Display group", s);
+
   window.whispers.database.ref('/').limitToLast(100).on('child_added', parse);
   
 }
@@ -264,6 +269,7 @@ Whispers.prototype.loadgroups = function(e) {
 }
 
 Whispers.prototype.displaygroup = function(key, name, whisper) {
+
   var div = document.getElementById(key);
   //if doesnt exist create it
   if (!div) {
@@ -274,7 +280,7 @@ Whispers.prototype.displaygroup = function(key, name, whisper) {
      window.whispers.groupList.appendChild(div);
   }
     div.querySelector('.room-title').textContent = name;
-    div.querySelector('.whisper-tf').textContent = "Whisper mode: " + whisper;
+    //div.querySelector('.whisper-tf').textContent = "Whisper mode: " + whisper;
     setTimeout(function() {div.classList.add('visible')}, 1);
     window.whispers.groupList.scrollTop = window.whispers.groupList.scrollHeight;
 };
@@ -299,6 +305,7 @@ Whispers.prototype.sendmsg = function(name, text) {
 };
 
 Whispers.prototype.loadmessages = function(ref, name) {
+
   var setmessage = function(data) {
     var x = data.val();
     Object.keys(x).forEach(function(k) {
