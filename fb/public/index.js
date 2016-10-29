@@ -202,7 +202,7 @@ function addMembers(name, key, mode) {
       name: name,
     })
   }
-
+  window.whispers.displayMembers("groups/" + key);
 }
 
 Whispers.prototype.displaymembers = function(ref) {
