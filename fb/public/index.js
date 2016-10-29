@@ -105,7 +105,10 @@ function signup() {
 function creategroup() {
   var tempname = document.getElementById('groupname').value;
   var tempuser = document.getElementById('groupusers').value;
+  var mode = document.getElementById('whisper').value;
   var me = window.whispers.name;
+  console.log(mode);
+  console.log($("#whisper").val());
 
   var test = window.whispers.grpref.push({
     groupname: tempname,
