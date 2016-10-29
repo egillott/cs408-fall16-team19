@@ -283,10 +283,7 @@ $("#new-chat").on("click", function() {
 $("#signup-button").on("click", function() {
   $('#login-menu').hide();
   $('#logout-menu').show();
-  //window.location.reload(true);
-    //console.log("Heuy");
-     var modal_signup = new Foundation.Reveal($('#signup-modal'));
-  modal_signup.close();
+  window.location.reload(true);
 })
 
 $("#more-people-btn").on("click", function() {
@@ -307,4 +304,9 @@ $("#signoutbutton").on("click", function() {
   $('#logout-menu').hide();
   $('#login-menu').show();  
   location.reload(true);
+})
+
+$("#fakesignoutbutton").on("click", function() {
+  var sign_out_modal = new Foundation.Reveal($("#sign-out-modal"));
+  sign_out_modal.close();
 })
