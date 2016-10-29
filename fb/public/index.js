@@ -1,5 +1,4 @@
 //random todo's:
-//whisper functionality?
 //add alert on (un)successful login / signup (replace log in button with signout / name)
 //...done?
 
@@ -63,6 +62,7 @@ function login() {
       if (x[k].name === tempuser) {
         if (x[k].password === temppass) {
            window.whispers.name = tempuser
+           document.getElementById('user').innerHTML = tempuser;
            window.whispers.password = temppass
            $('#login-menu').hide();
            $('#logout-menu').show(); 
