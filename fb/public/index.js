@@ -80,30 +80,53 @@ function login() {
   })
 }
 
+function catcherror() {
+  console.log("dupe");
+  document.getElementById('existerr').style.display = "inherit";
+
+}
+
+function setUser(tempuser, temppass) {
+  console.log(window.whispers.nodupe, tempuser);
+  window.whispers.userref.child(tempuser).set({
+   name: tempuser,
+   password: temppass,
+  }, function(err) {
+    console.log("ERROR CAUGHT");
+    window.whispers.nodupe = 0;
+    //throw new UserException("dupe");
+  })
+}
+
 function signup() {
-  console.log("try signup");
+  document.getElementById('existerr').style.display = "none";
+  document.getElementById('nmp').style.display = "none";
   tempuser = document.getElementById('signuser').value;
   temppass = document.getElementById('signpass').value;
   confirmpass = document.getElementById('signconfirmpass').value;
 
-  window.whispers.nodupe = 1;
   // confirm password
   if (temppass === confirmpass) {
     // if no duplicate name create user
-    console.log(window.whispers.nodupe, tempuser);
-    window.whispers.userref.child(tempuser).set({
-     name: tempuser,
-     password: temppass,
-    })
-    window.whispers.name = tempuser
-    window.whispers.password = temppass
-       
-    window.whispers.loadgroups();
+    setUser(tempuser, temppass)
+    //THE CONTROL FLOW HERE MAKES NO SENSE
+    //THIS IF STATEMNET IS REACHED BEFORE ANY OF THE ERROR CHECKING ABOVE
+    if (window.whispers.nodupe)      {
+
+    }
+    else {
+      console.log("reload", window.whispers.nodupe);
+      location.reload(true);
+    }
+
   }
   else{
-     alert("TWO PASSWORDS DO NOT MATCH!");
-     iscorrectsign = 0;
+    document.getElementById('nmp').style.display = "inherit";
   }
+}
+
+function UserException(msg) {
+  console.log(msg);
 }
 
 
@@ -347,9 +370,7 @@ $("#new-chat-mem").on("click", function() {
 })
 
 $("#signup-button").on("click", function() {
-  $('#login-menu').hide();
-  $('#logout-menu').show();
-  window.location.reload(true);
+
 })
 
 $("#open-about").on("click", function() {
@@ -362,10 +383,10 @@ $("#logout-menu").on("click", function() {
   sign_out_modal.open();
 });
 
-$("#signoutbutton").on("click", function() {
-  $('#logout-menu').hide();
-  $('#login-menu').show();  
-  location.reload(true);
+$("#signoutbutton").on("click", function() { 
+  $('#login-menu').hide();
+  $('#logout-menu').show();
+  window.location.reload(true);
 })
 
 $("#fakesignoutbutton").on("click", function() {

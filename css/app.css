@@ -200,6 +200,16 @@ html, body {
   display: none;
 }
 
+.nomatchpass {
+  color: red;
+  display: none;
+}
+
+.exist {
+  color: red;
+  display: none;
+}
+
 #footer{
     height: 50px;
     position: fixed;
