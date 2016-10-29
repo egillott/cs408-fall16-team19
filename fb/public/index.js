@@ -300,6 +300,11 @@ Whispers.prototype.displaymsg = function(key, name, text) {
     window.whispers.messageList.scrollTop = window.whispers.messageList.scrollHeight;
 };
 
+function submitText() {
+    var box = document.getElementById('message-box');
+    window.whispers.sendmsg(window.whispers.name, box.value);
+    box.value = "";
+}
 
 
 document.getElementById('message-box').onkeydown = function(event) {
