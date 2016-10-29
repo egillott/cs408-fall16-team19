@@ -1,8 +1,9 @@
 //random todo's:
-//logging out / changing users needs to clear the group list
 //clear out message listeners when changing groups
-//create group functionality
-//whisper functionality
+//add members more easily..?
+//check for duplicates everywhere
+//fix signup grey screen
+//whisper functionality?
 //add alert on (un)successful login / signup (replace log in button with signout / name)
 //...done?
 
@@ -33,6 +34,7 @@ function Whispers() {
   this.groupList = document.getElementById('groups')
   this.messageList = document.getElementById('messages');
   this.foo = this.messageList;
+  this.currentGroup;
   this.currentGroupRef = '';
   this.emptymsgList = this.messageList;
   this.initFirebase();
@@ -173,8 +175,9 @@ function changeGroup(obj) {
         if (x[k].groupname === obj.textContent) {
           // create ref to that groups messages
           var s = "groups/" + k + "/messages";
+          window.whispers.currentGroup = obj.textContent;
           window.whispers.messageList.innerHTML = ' ';
-          window.whispers.loadmessages(s);
+          window.whispers.loadmessages(s, obj.textContent);
         }
       }
     });
@@ -221,12 +224,15 @@ Whispers.prototype.sendmsg = function(name, text) {
     });
 };
 
-Whispers.prototype.loadmessages = function(ref) {
+Whispers.prototype.loadmessages = function(ref, name) {
   var setmessage = function(data) {
     var x = data.val();
     Object.keys(x).forEach(function(k) {
       // this is executed twice for some reason
-      window.whispers.displaymsg(data.key, x.name, x.text);
+      // ONLY IF IN CURRENT GROUP DO YOU DISPLAY IT
+      if (name == window.whispers.currentGroup) {
+        window.whispers.displaymsg(data.key, x.name, x.text);
+      }
     });
   };
   var r = this.database.ref(ref);
