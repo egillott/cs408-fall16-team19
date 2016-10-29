@@ -154,18 +154,18 @@ function creategroup() {
 }
 
 function addMembers(name, group) {
+  //get reference to member list
+  //add members
   window.whispers.grpref.on("value", function(snapshot) {
     var x = snapshot.val();
     Object.keys(x).forEach(function(k) {
+      console.log(x[k].groupname);
       if (group === x[k].groupname) {
         console.log("add " + x[k].groupname, name, group);
         addMembersTwo(name, k)
-        return;
       }
     });
-    return;
   });
-  return;
 
 }
 
@@ -203,7 +203,8 @@ Whispers.prototype.loadgroups = function(e) {
     var x = data.val();
     Object.keys(x.members).forEach(function(k) {
       //if user is in group add it to list
-      var n = x.members[k].name;
+      var n = x.members.name;
+      console.log(x.members);
       if (n === window.whispers.name) {
         // this is executed twice?
         window.whispers.displaygroup(data.key, x.groupname);
