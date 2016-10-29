@@ -37,6 +37,8 @@ function Whispers() {
   this.emptymsgList = this.messageList;
   this.initFirebase();
   this.a = 0;
+  this.loggedin = false;
+  $('#logout-menu').hide();
 }
 
 Whispers.prototype.initFirebase = function() {
@@ -58,19 +60,29 @@ function login() {
         if (x[k].password === temppass) {
            window.whispers.name = tempuser
            window.whispers.password = temppass
+
+
            window.whispers.loadgroups();
            return;
         }
         else {
-          alert("incorrect password");
+          alert("Incorrect password");
+
+
         }
       }
     });
   })
 }
 
+function logout() {
+  this.name = '';
+  this.password = '';
+}
+var iscorrectsign = 0;
+
 function signup() {
-  console.log("try singup");
+  console.log("try signup");
   tempuser = document.getElementById('signuser').value;
   temppass = document.getElementById('signpass').value;
   confirmpass = document.getElementById('signconfirmpass').value;
@@ -78,6 +90,7 @@ function signup() {
   var nodupe = 0;
   // confirm password
   if (temppass === confirmpass) {
+    iscorrectsign = 1;
     // iterate through names, check for duplicates. if so set nodupe to 1
     window.whispers.userref.on("value", function(snapshot) {
       var x = snapshot.val();
@@ -97,11 +110,17 @@ function signup() {
       })
       window.whispers.name = tempuser
       window.whispers.password = temppass
+       
       window.whispers.loadgroups();
     }
     else {
       console.log("duplicate");
     }
+  }
+  else{
+
+     alert("TWO PASSWORDS DO NOT MATCH!");
+     iscorrectsign = 0;
   }
 }
 
@@ -258,6 +277,8 @@ document.getElementById('message-box').onkeydown = function(event) {
 }
 
 window.onload = function() {
+   var modal_login = new Foundation.Reveal($('#login-modal'));
+  modal_login.open();
   window.whispers = new Whispers();
 };
 
@@ -268,7 +289,9 @@ $("#login-menu").on("click", function() {
 });
 
 $("#login-button").on("click", function() {
-  modal_login.close();
+  $('#login-menu').hide();
+  $('#logout-menu').show(); 
+  modal_login.close(); 
 })
 
 $("#signup-modal-button").on("click", function() {
@@ -282,7 +305,15 @@ $("#new-chat").on("click", function() {
 });
 
 $("#signup-button").on("click", function() {
+  $('#login-menu').hide();
+  $('#logout-menu').show();
   //window.location.reload(true);
+  if(iscorrectsign==1)
+  {
+    //console.log("Heuy");
+     var modal_signup = new Foundation.Reveal($('#signup-modal'));
+  modal_signup.close();
+  }
 })
 
 $("#more-people-btn").on("click", function() {
@@ -293,3 +324,14 @@ $("#open-about").on("click", function() {
   var about_modal = new Foundation.Reveal($("#about-modal"));
   about_modal.open();
 });
+
+$("#logout-menu").on("click", function() {
+  var sign_out_modal = new Foundation.Reveal($("#sign-out-modal"));
+  sign_out_modal.open();
+});
+
+$("#signoutbutton").on("click", function() {
+  $('#logout-menu').hide();
+  $('#login-menu').show();  
+  location.reload(true);
+})
