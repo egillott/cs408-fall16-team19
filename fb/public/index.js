@@ -280,14 +280,15 @@ $("#new-chat").on("click", function() {
   new_convo_mocal.open();
 });
 
+$("#new-chat-mem").on("click", function() {
+  var new_mem_modal = new Foundation.Reveal($("#new-mem-modal"));
+  new_mem_modal.open();
+})
+
 $("#signup-button").on("click", function() {
   $('#login-menu').hide();
   $('#logout-menu').show();
   window.location.reload(true);
-})
-
-$("#more-people-btn").on("click", function() {
-  console.log("ya.");
 })
 
 $("#open-about").on("click", function() {
